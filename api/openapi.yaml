@@ -1,0 +1,117 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: max.yu@memas.ai
+  description: This is the Control Plane APIs for MeMaS (Memory Management Service).
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: MeMaS CP APIs
+  version: 0.1.0
+externalDocs:
+  description: Find out more about MeMaS
+  url: http://memas.ai
+servers:
+- url: /
+tags:
+- description: Control Plane APIs for Admins
+  name: cp
+paths:
+  /cp/create_user:
+    post:
+      description: Create a namespace user
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createUser_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createUser_200_response'
+          description: Successful Operation
+      summary: Create user
+      tags:
+      - cp
+      x-content-type: application/json
+      x-accepts: application/json
+  /cp/create_corpus:
+    post:
+      description: Create a corpus under a namespace
+      operationId: createCorpus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createCorpus_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createUser_200_response'
+          description: Successful Operation
+      summary: Create corpus
+      tags:
+      - cp
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  responses:
+    OperationSuccess:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createUser_200_response'
+      description: Successful Operation
+  schemas:
+    CorpusType:
+      description: Type of a Corpus
+      enum:
+      - knowledge
+      - conversation
+      type: string
+    CorpusPathname:
+      description: "\"Full name of a corpus, specifying which namespace the corpus\
+        \ is under. \nThe name takes on the format of \\\"<namespace_pathname>:<corpus_name>\\\
+        \"\""
+      example: memas:wikipedia
+      type: string
+    NamespacePathname:
+      description: |-
+        "Full namespace name, where child namespaces are appended after their parents'
+        names with '.'"
+      example: memas.chatbot.persona1
+      type: string
+    createUser_request:
+      properties:
+        namespace_pathname:
+          description: |-
+            "Full namespace name, where child namespaces are appended after their parents'
+            names with '.'"
+          example: memas.chatbot.persona1
+          type: string
+      type: object
+    createUser_200_response:
+      example:
+        success: true
+      properties:
+        success:
+          example: true
+          type: boolean
+      type: object
+    createCorpus_request:
+      properties:
+        corpus_pathname:
+          description: full corpus name
+          example: memas.wikipedia
+          type: string
+        corpus_type:
+          $ref: '#/components/schemas/CorpusType'
+      type: object
+
