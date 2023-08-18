@@ -19,11 +19,11 @@ Create a corpus under a namespace
 ### Example
 ```java
 // Import classes:
-import ai.memas.memas_sdk.invoker.ApiClient;
-import ai.memas.memas_sdk.invoker.ApiException;
-import ai.memas.memas_sdk.invoker.Configuration;
-import ai.memas.memas_sdk.invoker.models.*;
-import ai.memas.memas_sdk.api.CpApi;
+import ai.memas.memassdk.invoker.ApiClient;
+import ai.memas.memassdk.invoker.ApiException;
+import ai.memas.memassdk.invoker.Configuration;
+import ai.memas.memassdk.invoker.models.*;
+import ai.memas.memassdk.api.CpApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -81,11 +81,11 @@ Create a namespace user
 ### Example
 ```java
 // Import classes:
-import ai.memas.memas_sdk.invoker.ApiClient;
-import ai.memas.memas_sdk.invoker.ApiException;
-import ai.memas.memas_sdk.invoker.Configuration;
-import ai.memas.memas_sdk.invoker.models.*;
-import ai.memas.memas_sdk.api.CpApi;
+import ai.memas.memassdk.invoker.ApiClient;
+import ai.memas.memassdk.invoker.ApiException;
+import ai.memas.memassdk.invoker.Configuration;
+import ai.memas.memassdk.invoker.models.*;
+import ai.memas.memassdk.api.CpApi;
 
 public class Example {
   public static void main(String[] args) {
