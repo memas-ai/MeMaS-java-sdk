@@ -1,6 +1,6 @@
 /*
  * MeMaS CP APIs
- * This is the Control Plane APIs for MeMaS (Memory Management Service).
+ * This is the Control Plane client for MeMaS (Memory Management Service).  See https://github.com/memas-ai/MeMaS for more details.
  *
  * The version of the OpenAPI document: 0.1.0
  * Contact: max.yu@memas.ai
@@ -51,7 +51,7 @@ import ai.memas.memassdk.invoker.JSON;
 /**
  * CreateCorpusRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T00:44:31.367527111-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-20T02:22:36.832336716-07:00[America/Los_Angeles]")
 public class CreateCorpusRequest {
   public static final String SERIALIZED_NAME_CORPUS_PATHNAME = "corpus_pathname";
   @SerializedName(SERIALIZED_NAME_CORPUS_PATHNAME)
@@ -74,7 +74,7 @@ public class CreateCorpusRequest {
    * full corpus name
    * @return corpusPathname
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getCorpusPathname() {
     return corpusPathname;
   }
@@ -95,7 +95,7 @@ public class CreateCorpusRequest {
    * Get corpusType
    * @return corpusType
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public CorpusType getCorpusType() {
     return corpusType;
   }
@@ -158,6 +158,8 @@ public class CreateCorpusRequest {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("corpus_pathname");
+    openapiRequiredFields.add("corpus_type");
   }
 
  /**
@@ -180,7 +182,14 @@ public class CreateCorpusRequest {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCorpusRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("corpus_pathname") != null && !jsonObj.get("corpus_pathname").isJsonNull()) && !jsonObj.get("corpus_pathname").isJsonPrimitive()) {
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : CreateCorpusRequest.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if (!jsonObj.get("corpus_pathname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `corpus_pathname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("corpus_pathname").toString()));
       }
   }

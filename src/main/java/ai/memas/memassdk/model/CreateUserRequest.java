@@ -1,6 +1,6 @@
 /*
  * MeMaS CP APIs
- * This is the Control Plane APIs for MeMaS (Memory Management Service).
+ * This is the Control Plane client for MeMaS (Memory Management Service).  See https://github.com/memas-ai/MeMaS for more details.
  *
  * The version of the OpenAPI document: 0.1.0
  * Contact: max.yu@memas.ai
@@ -50,7 +50,7 @@ import ai.memas.memassdk.invoker.JSON;
 /**
  * CreateUserRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T00:44:31.367527111-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-20T02:22:36.832336716-07:00[America/Los_Angeles]")
 public class CreateUserRequest {
   public static final String SERIALIZED_NAME_NAMESPACE_PATHNAME = "namespace_pathname";
   @SerializedName(SERIALIZED_NAME_NAMESPACE_PATHNAME)
@@ -66,10 +66,10 @@ public class CreateUserRequest {
   }
 
    /**
-   * \&quot;Full namespace name, where child namespaces are appended after their parents&#39; names with &#39;.&#39;\&quot;
+   * Full namespace name, where child namespaces are appended after their parents&#39; names with &#39;.&#39;
    * @return namespacePathname
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getNamespacePathname() {
     return namespacePathname;
   }
@@ -129,6 +129,7 @@ public class CreateUserRequest {
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("namespace_pathname");
   }
 
  /**
@@ -151,7 +152,14 @@ public class CreateUserRequest {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateUserRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("namespace_pathname") != null && !jsonObj.get("namespace_pathname").isJsonNull()) && !jsonObj.get("namespace_pathname").isJsonPrimitive()) {
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : CreateUserRequest.openapiRequiredFields) {
+        if (jsonObj.get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        }
+      }
+      if (!jsonObj.get("namespace_pathname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `namespace_pathname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("namespace_pathname").toString()));
       }
   }

@@ -2,7 +2,8 @@ openapi: 3.0.3
 info:
   contact:
     email: max.yu@memas.ai
-  description: This is the Control Plane APIs for MeMaS (Memory Management Service).
+  description: "This is the Control Plane client for MeMaS (Memory Management Service).\
+    \ \nSee https://github.com/memas-ai/MeMaS for more details."
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -77,25 +78,27 @@ components:
       - conversation
       type: string
     CorpusPathname:
-      description: "\"Full name of a corpus, specifying which namespace the corpus\
-        \ is under. \nThe name takes on the format of \\\"<namespace_pathname>:<corpus_name>\\\
-        \"\""
+      description: "Full name of a corpus, specifying which namespace the corpus is\
+        \ under. \nThe name takes on the format of \\\"<namespace_pathname>:<corpus_name>\\\
+        \""
       example: memas:wikipedia
       type: string
     NamespacePathname:
       description: |-
-        "Full namespace name, where child namespaces are appended after their parents'
-        names with '.'"
+        Full namespace name, where child namespaces are appended after their parents'
+        names with '.'
       example: memas.chatbot.persona1
       type: string
     createUser_request:
       properties:
         namespace_pathname:
           description: |-
-            "Full namespace name, where child namespaces are appended after their parents'
-            names with '.'"
+            Full namespace name, where child namespaces are appended after their parents'
+            names with '.'
           example: memas.chatbot.persona1
           type: string
+      required:
+      - namespace_pathname
       type: object
     createUser_200_response:
       example:
@@ -113,5 +116,8 @@ components:
           type: string
         corpus_type:
           $ref: '#/components/schemas/CorpusType'
+      required:
+      - corpus_pathname
+      - corpus_type
       type: object
 

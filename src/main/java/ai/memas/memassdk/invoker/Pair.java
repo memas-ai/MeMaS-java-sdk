@@ -1,6 +1,6 @@
 /*
  * MeMaS CP APIs
- * This is the Control Plane APIs for MeMaS (Memory Management Service).
+ * This is the Control Plane client for MeMaS (Memory Management Service).  See https://github.com/memas-ai/MeMaS for more details.
  *
  * The version of the OpenAPI document: 0.1.0
  * Contact: max.yu@memas.ai
@@ -13,7 +13,7 @@
 
 package ai.memas.memassdk.invoker;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T00:44:31.367527111-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-20T02:22:36.832336716-07:00[America/Los_Angeles]")
 public class Pair {
     private String name = "";
     private String value = "";
