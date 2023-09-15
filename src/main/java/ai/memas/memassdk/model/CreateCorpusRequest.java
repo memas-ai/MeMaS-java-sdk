@@ -51,7 +51,7 @@ import ai.memas.memassdk.invoker.JSON;
 /**
  * CreateCorpusRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-20T02:22:36.832336716-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-14T01:40:43.222482928-07:00[America/Los_Angeles]")
 public class CreateCorpusRequest {
   public static final String SERIALIZED_NAME_CORPUS_PATHNAME = "corpus_pathname";
   @SerializedName(SERIALIZED_NAME_CORPUS_PATHNAME)

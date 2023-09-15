@@ -35,6 +35,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/createUser_200_response'
           description: Successful Operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createUser_400_response'
+          description: Failed operation
       summary: Create user
       tags:
       - cp
@@ -57,6 +63,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/createUser_200_response'
           description: Successful Operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createUser_400_response'
+          description: Failed operation
       summary: Create corpus
       tags:
       - cp
@@ -89,6 +101,57 @@ components:
         names with '.'
       example: memas.chatbot.persona1
       type: string
+    NamespaceDoesNotExistError:
+      description: Error returned when the namespace object (corpus/user) does not
+        exist
+      properties:
+        error_code:
+          enum:
+          - namespace_does_not_exist
+          type: string
+        msg:
+          example: "\"memas:wikipedia\" does not exists, you need to create the resource\
+            \ first"
+          type: string
+        details:
+          type: string
+      required:
+      - error_code
+      - msg
+      type: object
+    NamespaceExistError:
+      description: Error returned when the namespace object (corpus/user) already
+        exists
+      properties:
+        error_code:
+          enum:
+          - namespace_exists
+          type: string
+        msg:
+          example: '"memas:wikipedia" already exists'
+          type: string
+        details:
+          type: string
+      required:
+      - error_code
+      - msg
+      type: object
+    NamespaceIllegalNameError:
+      description: Error returned when the namespace name format/style is not allowed
+      properties:
+        error_code:
+          enum:
+          - namespace_illegal_name
+          type: string
+        msg:
+          example: '"memas!wikipedia" is not a valid pathname'
+          type: string
+        details:
+          type: string
+      required:
+      - error_code
+      - msg
+      type: object
     createUser_request:
       properties:
         namespace_pathname:
@@ -108,6 +171,10 @@ components:
           example: true
           type: boolean
       type: object
+    createUser_400_response:
+      oneOf:
+      - $ref: '#/components/schemas/NamespaceExistError'
+      - $ref: '#/components/schemas/NamespaceIllegalNameError'
     createCorpus_request:
       properties:
         corpus_pathname:

@@ -69,6 +69,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Operation |  -  |
+| **400** | Failed operation |  -  |
 
 <a id="createUser"></a>
 # **createUser**
@@ -131,4 +132,5 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Operation |  -  |
+| **400** | Failed operation |  -  |
 

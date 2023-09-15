@@ -5,7 +5,7 @@
     <artifactId>memas-sdk</artifactId>
     <packaging>jar</packaging>
     <name>memas-sdk</name>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <url>https://github.com/memas-ai/MeMaS-java-sdk</url>
     <description>OpenAPI Java</description>
     <scm>

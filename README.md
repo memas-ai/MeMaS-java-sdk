@@ -2,7 +2,7 @@
 
 MeMaS CP APIs
 - API version: 0.1.0
-  - Build date: 2023-08-20T02:22:36.832336716-07:00[America/Los_Angeles]
+  - Build date: 2023-09-14T01:40:43.222482928-07:00[America/Los_Angeles]
 
 This is the Control Plane client for MeMaS (Memory Management Service). 
 See https://github.com/memas-ai/MeMaS for more details.
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>ai.memas</groupId>
   <artifactId>memas-sdk</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "ai.memas:memas-sdk:0.1.1"
+     implementation "ai.memas:memas-sdk:0.1.2"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/memas-sdk-0.1.1.jar`
+* `target/memas-sdk-0.1.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -124,7 +124,11 @@ Class | Method | HTTP request | Description
  - [CorpusType](docs/CorpusType.md)
  - [CreateCorpusRequest](docs/CreateCorpusRequest.md)
  - [CreateUser200Response](docs/CreateUser200Response.md)
+ - [CreateUser400Response](docs/CreateUser400Response.md)
  - [CreateUserRequest](docs/CreateUserRequest.md)
+ - [NamespaceDoesNotExistError](docs/NamespaceDoesNotExistError.md)
+ - [NamespaceExistError](docs/NamespaceExistError.md)
+ - [NamespaceIllegalNameError](docs/NamespaceIllegalNameError.md)
 
 
 <a id="documentation-for-authorization"></a>

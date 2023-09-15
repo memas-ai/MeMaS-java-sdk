@@ -9,7 +9,11 @@ docs/CorpusType.md
 docs/CpApi.md
 docs/CreateCorpusRequest.md
 docs/CreateUser200Response.md
+docs/CreateUser400Response.md
 docs/CreateUserRequest.md
+docs/NamespaceDoesNotExistError.md
+docs/NamespaceExistError.md
+docs/NamespaceIllegalNameError.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -41,4 +45,12 @@ src/main/java/ai/memas/memassdk/model/AbstractOpenApiSchema.java
 src/main/java/ai/memas/memassdk/model/CorpusType.java
 src/main/java/ai/memas/memassdk/model/CreateCorpusRequest.java
 src/main/java/ai/memas/memassdk/model/CreateUser200Response.java
+src/main/java/ai/memas/memassdk/model/CreateUser400Response.java
 src/main/java/ai/memas/memassdk/model/CreateUserRequest.java
+src/main/java/ai/memas/memassdk/model/NamespaceDoesNotExistError.java
+src/main/java/ai/memas/memassdk/model/NamespaceExistError.java
+src/main/java/ai/memas/memassdk/model/NamespaceIllegalNameError.java
+src/test/java/ai/memas/memassdk/model/CreateUser400ResponseTest.java
+src/test/java/ai/memas/memassdk/model/NamespaceDoesNotExistErrorTest.java
+src/test/java/ai/memas/memassdk/model/NamespaceExistErrorTest.java
+src/test/java/ai/memas/memassdk/model/NamespaceIllegalNameErrorTest.java

@@ -50,7 +50,7 @@ import ai.memas.memassdk.invoker.JSON;
 /**
  * CreateUserRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-20T02:22:36.832336716-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-14T01:40:43.222482928-07:00[America/Los_Angeles]")
 public class CreateUserRequest {
   public static final String SERIALIZED_NAME_NAMESPACE_PATHNAME = "namespace_pathname";
   @SerializedName(SERIALIZED_NAME_NAMESPACE_PATHNAME)

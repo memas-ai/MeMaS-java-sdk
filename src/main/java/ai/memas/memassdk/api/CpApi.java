@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import ai.memas.memassdk.model.CreateCorpusRequest;
 import ai.memas.memassdk.model.CreateUser200Response;
+import ai.memas.memassdk.model.CreateUser400Response;
 import ai.memas.memassdk.model.CreateUserRequest;
 
 import java.lang.reflect.Type;
@@ -85,6 +86,7 @@ public class CpApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Failed operation </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call createCorpusCall(CreateCorpusRequest createCorpusRequest, final ApiCallback _callback) throws ApiException {
@@ -153,6 +155,7 @@ public class CpApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Failed operation </td><td>  -  </td></tr>
      </table>
      */
     public CreateUser200Response createCorpus(CreateCorpusRequest createCorpusRequest) throws ApiException {
@@ -170,6 +173,7 @@ public class CpApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Failed operation </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<CreateUser200Response> createCorpusWithHttpInfo(CreateCorpusRequest createCorpusRequest) throws ApiException {
@@ -189,6 +193,7 @@ public class CpApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Failed operation </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call createCorpusAsync(CreateCorpusRequest createCorpusRequest, final ApiCallback<CreateUser200Response> _callback) throws ApiException {
@@ -208,6 +213,7 @@ public class CpApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Failed operation </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call createUserCall(CreateUserRequest createUserRequest, final ApiCallback _callback) throws ApiException {
@@ -276,6 +282,7 @@ public class CpApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Failed operation </td><td>  -  </td></tr>
      </table>
      */
     public CreateUser200Response createUser(CreateUserRequest createUserRequest) throws ApiException {
@@ -293,6 +300,7 @@ public class CpApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Failed operation </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<CreateUser200Response> createUserWithHttpInfo(CreateUserRequest createUserRequest) throws ApiException {
@@ -312,6 +320,7 @@ public class CpApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Failed operation </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call createUserAsync(CreateUserRequest createUserRequest, final ApiCallback<CreateUser200Response> _callback) throws ApiException {

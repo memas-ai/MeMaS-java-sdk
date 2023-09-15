@@ -95,7 +95,11 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(new ai.memas.memassdk.model.CreateCorpusRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.memas.memassdk.model.CreateUser200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.memas.memassdk.model.CreateUser400Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new ai.memas.memassdk.model.CreateUserRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.memas.memassdk.model.NamespaceDoesNotExistError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.memas.memassdk.model.NamespaceExistError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new ai.memas.memassdk.model.NamespaceIllegalNameError.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 
