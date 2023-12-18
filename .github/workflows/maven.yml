@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build MeMaS CP APIs
+    name: Build MeMaS APIs
     runs-on: ubuntu-latest
     strategy:
       matrix:

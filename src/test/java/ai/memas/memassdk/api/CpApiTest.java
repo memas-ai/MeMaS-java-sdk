@@ -15,7 +15,7 @@ package ai.memas.memassdk.api;
 
 import ai.memas.memassdk.invoker.ApiException;
 import ai.memas.memassdk.model.CreateCorpusRequest;
-import ai.memas.memassdk.model.CreateUser200Response;
+import ai.memas.memassdk.model.Memorize200Response;
 import ai.memas.memassdk.model.CreateUserRequest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ public class CpApiTest {
     @Test
     public void createCorpusTest() throws ApiException {
         CreateCorpusRequest createCorpusRequest = null;
-        CreateUser200Response response = api.createCorpus(createCorpusRequest);
+        Memorize200Response response = api.createCorpus(createCorpusRequest);
         // TODO: test validations
     }
 
@@ -57,7 +57,7 @@ public class CpApiTest {
     @Test
     public void createUserTest() throws ApiException {
         CreateUserRequest createUserRequest = null;
-        CreateUser200Response response = api.createUser(createUserRequest);
+        Memorize200Response response = api.createUser(createUserRequest);
         // TODO: test validations
     }
 

@@ -48,35 +48,60 @@ import java.util.Set;
 import ai.memas.memassdk.invoker.JSON;
 
 /**
- * CreateUserRequest
+ * RecallRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-17T15:47:50.270747166-08:00[America/Los_Angeles]")
-public class CreateUserRequest {
-  public static final String SERIALIZED_NAME_NAMESPACE_PATHNAME = "namespace_pathname";
-  @SerializedName(SERIALIZED_NAME_NAMESPACE_PATHNAME)
-  private String namespacePathname;
+public class RecallRequest {
+  public static final String SERIALIZED_NAME_CLUE = "clue";
+  @SerializedName(SERIALIZED_NAME_CLUE)
+  private String clue;
 
-  public CreateUserRequest() {
+  public static final String SERIALIZED_NAME_CORPUS_PATHNAME = "corpus_pathname";
+  @SerializedName(SERIALIZED_NAME_CORPUS_PATHNAME)
+  private String corpusPathname;
+
+  public RecallRequest() {
   }
 
-  public CreateUserRequest namespacePathname(String namespacePathname) {
+  public RecallRequest clue(String clue) {
     
-    this.namespacePathname = namespacePathname;
+    this.clue = clue;
     return this;
   }
 
    /**
-   * Full namespace name, where child namespaces are appended after their parents&#39; names with &#39;.&#39;
-   * @return namespacePathname
+   * Get clue
+   * @return clue
   **/
   @javax.annotation.Nonnull
-  public String getNamespacePathname() {
-    return namespacePathname;
+  public String getClue() {
+    return clue;
   }
 
 
-  public void setNamespacePathname(String namespacePathname) {
-    this.namespacePathname = namespacePathname;
+  public void setClue(String clue) {
+    this.clue = clue;
+  }
+
+
+  public RecallRequest corpusPathname(String corpusPathname) {
+    
+    this.corpusPathname = corpusPathname;
+    return this;
+  }
+
+   /**
+   * Full name of a corpus, specifying which namespace the corpus is under.  The name takes on the format of \\\&quot;&lt;namespace_pathname&gt;:&lt;corpus_name&gt;\\\&quot;
+   * @return corpusPathname
+  **/
+  @javax.annotation.Nonnull
+  public String getCorpusPathname() {
+    return corpusPathname;
+  }
+
+
+  public void setCorpusPathname(String corpusPathname) {
+    this.corpusPathname = corpusPathname;
   }
 
 
@@ -89,20 +114,22 @@ public class CreateUserRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateUserRequest createUserRequest = (CreateUserRequest) o;
-    return Objects.equals(this.namespacePathname, createUserRequest.namespacePathname);
+    RecallRequest recallRequest = (RecallRequest) o;
+    return Objects.equals(this.clue, recallRequest.clue) &&
+        Objects.equals(this.corpusPathname, recallRequest.corpusPathname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(namespacePathname);
+    return Objects.hash(clue, corpusPathname);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateUserRequest {\n");
-    sb.append("    namespacePathname: ").append(toIndentedString(namespacePathname)).append("\n");
+    sb.append("class RecallRequest {\n");
+    sb.append("    clue: ").append(toIndentedString(clue)).append("\n");
+    sb.append("    corpusPathname: ").append(toIndentedString(corpusPathname)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -125,42 +152,47 @@ public class CreateUserRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("namespace_pathname");
+    openapiFields.add("clue");
+    openapiFields.add("corpus_pathname");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("namespace_pathname");
+    openapiRequiredFields.add("clue");
+    openapiRequiredFields.add("corpus_pathname");
   }
 
  /**
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateUserRequest
+  * @throws IOException if the JSON Object is invalid with respect to RecallRequest
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (!CreateUserRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateUserRequest is not found in the empty JSON string", CreateUserRequest.openapiRequiredFields.toString()));
+        if (!RecallRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in RecallRequest is not found in the empty JSON string", RecallRequest.openapiRequiredFields.toString()));
         }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
-        if (!CreateUserRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateUserRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        if (!RecallRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RecallRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateUserRequest.openapiRequiredFields) {
+      for (String requiredField : RecallRequest.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (!jsonObj.get("namespace_pathname").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `namespace_pathname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("namespace_pathname").toString()));
+      if (!jsonObj.get("clue").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `clue` to be a primitive type in the JSON string but got `%s`", jsonObj.get("clue").toString()));
+      }
+      if (!jsonObj.get("corpus_pathname").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `corpus_pathname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("corpus_pathname").toString()));
       }
   }
 
@@ -168,22 +200,22 @@ public class CreateUserRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CreateUserRequest.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CreateUserRequest' and its subtypes
+       if (!RecallRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'RecallRequest' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CreateUserRequest> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CreateUserRequest.class));
+       final TypeAdapter<RecallRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(RecallRequest.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CreateUserRequest>() {
+       return (TypeAdapter<T>) new TypeAdapter<RecallRequest>() {
            @Override
-           public void write(JsonWriter out, CreateUserRequest value) throws IOException {
+           public void write(JsonWriter out, RecallRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public CreateUserRequest read(JsonReader in) throws IOException {
+           public RecallRequest read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -194,18 +226,18 @@ public class CreateUserRequest {
   }
 
  /**
-  * Create an instance of CreateUserRequest given an JSON string
+  * Create an instance of RecallRequest given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of CreateUserRequest
-  * @throws IOException if the JSON string is invalid with respect to CreateUserRequest
+  * @return An instance of RecallRequest
+  * @throws IOException if the JSON string is invalid with respect to RecallRequest
   */
-  public static CreateUserRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CreateUserRequest.class);
+  public static RecallRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, RecallRequest.class);
   }
 
  /**
-  * Convert an instance of CreateUserRequest to an JSON string
+  * Convert an instance of RecallRequest to an JSON string
   *
   * @return JSON string
   */

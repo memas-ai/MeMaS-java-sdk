@@ -1,10 +1,10 @@
 # memas-sdk
 
-MeMaS CP APIs
-- API version: 0.1.0
-  - Build date: 2023-09-14T01:40:43.222482928-07:00[America/Los_Angeles]
+MeMaS APIs
+- API version: 0.1.1
+  - Build date: 2023-12-17T15:47:50.270747166-08:00[America/Los_Angeles]
 
-This is the Control Plane client for MeMaS (Memory Management Service). 
+This is the Control Plane and Data Plane APIs for MeMaS (Memory Management Service).
 See https://github.com/memas-ai/MeMaS for more details.
 
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>ai.memas</groupId>
   <artifactId>memas-sdk</artifactId>
-  <version>0.1.2</version>
+  <version>0.1.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "ai.memas:memas-sdk:0.1.2"
+     implementation "ai.memas:memas-sdk:0.1.3"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/memas-sdk-0.1.2.jar`
+* `target/memas-sdk-0.1.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -95,7 +95,7 @@ public class Example {
     CpApi apiInstance = new CpApi(defaultClient);
     CreateCorpusRequest createCorpusRequest = new CreateCorpusRequest(); // CreateCorpusRequest | 
     try {
-      CreateUser200Response result = apiInstance.createCorpus(createCorpusRequest);
+      Memorize200Response result = apiInstance.createCorpus(createCorpusRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CpApi#createCorpus");
@@ -115,20 +115,31 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CpApi* | [**createCorpus**](docs/CpApi.md#createCorpus) | **POST** /cp/create_corpus | Create corpus
-*CpApi* | [**createUser**](docs/CpApi.md#createUser) | **POST** /cp/create_user | Create user
+*CpApi* | [**createCorpus**](docs/CpApi.md#createCorpus) | **POST** /cp/corpus | Create corpus
+*CpApi* | [**createUser**](docs/CpApi.md#createUser) | **POST** /cp/user | Create user
+*CpApi* | [**deleteCorpus**](docs/CpApi.md#deleteCorpus) | **DELETE** /cp/corpus | Delete corpus
+*CpApi* | [**deleteUser**](docs/CpApi.md#deleteUser) | **DELETE** /cp/user | Delete user
+*DpApi* | [**memorize**](docs/DpApi.md#memorize) | **POST** /dp/memorize | Memorize information
+*DpApi* | [**recall**](docs/DpApi.md#recall) | **GET** /dp/recall | Recalls information
 
 
 ## Documentation for Models
 
+ - [Citation](docs/Citation.md)
+ - [CitedDocument](docs/CitedDocument.md)
  - [CorpusType](docs/CorpusType.md)
  - [CreateCorpusRequest](docs/CreateCorpusRequest.md)
- - [CreateUser200Response](docs/CreateUser200Response.md)
  - [CreateUser400Response](docs/CreateUser400Response.md)
  - [CreateUserRequest](docs/CreateUserRequest.md)
+ - [DeleteCorpusRequest](docs/DeleteCorpusRequest.md)
+ - [Memorize200Response](docs/Memorize200Response.md)
+ - [Memorize400Response](docs/Memorize400Response.md)
+ - [MemorizeRequest](docs/MemorizeRequest.md)
+ - [MemorizeRequestAllOf](docs/MemorizeRequestAllOf.md)
  - [NamespaceDoesNotExistError](docs/NamespaceDoesNotExistError.md)
  - [NamespaceExistError](docs/NamespaceExistError.md)
  - [NamespaceIllegalNameError](docs/NamespaceIllegalNameError.md)
+ - [RecallRequest](docs/RecallRequest.md)
 
 
 <a id="documentation-for-authorization"></a>

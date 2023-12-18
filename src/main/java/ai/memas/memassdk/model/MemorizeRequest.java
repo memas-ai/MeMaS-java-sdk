@@ -15,7 +15,7 @@ package ai.memas.memassdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ai.memas.memassdk.model.CorpusType;
+import ai.memas.memassdk.model.Citation;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -49,47 +49,68 @@ import java.util.Set;
 import ai.memas.memassdk.invoker.JSON;
 
 /**
- * CreateCorpusRequest
+ * MemorizeRequest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-17T15:47:50.270747166-08:00[America/Los_Angeles]")
-public class CreateCorpusRequest {
-  public static final String SERIALIZED_NAME_NAMESPACE_PATHNAME = "namespace_pathname";
-  @SerializedName(SERIALIZED_NAME_NAMESPACE_PATHNAME)
-  private String namespacePathname;
+public class MemorizeRequest {
+  public static final String SERIALIZED_NAME_DOCUMENT = "document";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT)
+  private String document;
+
+  public static final String SERIALIZED_NAME_CITATION = "citation";
+  @SerializedName(SERIALIZED_NAME_CITATION)
+  private Citation citation;
 
   public static final String SERIALIZED_NAME_CORPUS_PATHNAME = "corpus_pathname";
   @SerializedName(SERIALIZED_NAME_CORPUS_PATHNAME)
   private String corpusPathname;
 
-  public static final String SERIALIZED_NAME_CORPUS_TYPE = "corpus_type";
-  @SerializedName(SERIALIZED_NAME_CORPUS_TYPE)
-  private CorpusType corpusType;
-
-  public CreateCorpusRequest() {
+  public MemorizeRequest() {
   }
 
-  public CreateCorpusRequest namespacePathname(String namespacePathname) {
+  public MemorizeRequest document(String document) {
     
-    this.namespacePathname = namespacePathname;
+    this.document = document;
     return this;
   }
 
    /**
-   * Full namespace name, where child namespaces are appended after their parents&#39; names with &#39;.&#39;
-   * @return namespacePathname
+   * Get document
+   * @return document
   **/
   @javax.annotation.Nonnull
-  public String getNamespacePathname() {
-    return namespacePathname;
+  public String getDocument() {
+    return document;
   }
 
 
-  public void setNamespacePathname(String namespacePathname) {
-    this.namespacePathname = namespacePathname;
+  public void setDocument(String document) {
+    this.document = document;
   }
 
 
-  public CreateCorpusRequest corpusPathname(String corpusPathname) {
+  public MemorizeRequest citation(Citation citation) {
+    
+    this.citation = citation;
+    return this;
+  }
+
+   /**
+   * Get citation
+   * @return citation
+  **/
+  @javax.annotation.Nonnull
+  public Citation getCitation() {
+    return citation;
+  }
+
+
+  public void setCitation(Citation citation) {
+    this.citation = citation;
+  }
+
+
+  public MemorizeRequest corpusPathname(String corpusPathname) {
     
     this.corpusPathname = corpusPathname;
     return this;
@@ -99,7 +120,7 @@ public class CreateCorpusRequest {
    * Full name of a corpus, specifying which namespace the corpus is under.  The name takes on the format of \\\&quot;&lt;namespace_pathname&gt;:&lt;corpus_name&gt;\\\&quot;
    * @return corpusPathname
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getCorpusPathname() {
     return corpusPathname;
   }
@@ -107,27 +128,6 @@ public class CreateCorpusRequest {
 
   public void setCorpusPathname(String corpusPathname) {
     this.corpusPathname = corpusPathname;
-  }
-
-
-  public CreateCorpusRequest corpusType(CorpusType corpusType) {
-    
-    this.corpusType = corpusType;
-    return this;
-  }
-
-   /**
-   * Get corpusType
-   * @return corpusType
-  **/
-  @javax.annotation.Nonnull
-  public CorpusType getCorpusType() {
-    return corpusType;
-  }
-
-
-  public void setCorpusType(CorpusType corpusType) {
-    this.corpusType = corpusType;
   }
 
 
@@ -140,24 +140,24 @@ public class CreateCorpusRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateCorpusRequest createCorpusRequest = (CreateCorpusRequest) o;
-    return Objects.equals(this.namespacePathname, createCorpusRequest.namespacePathname) &&
-        Objects.equals(this.corpusPathname, createCorpusRequest.corpusPathname) &&
-        Objects.equals(this.corpusType, createCorpusRequest.corpusType);
+    MemorizeRequest memorizeRequest = (MemorizeRequest) o;
+    return Objects.equals(this.document, memorizeRequest.document) &&
+        Objects.equals(this.citation, memorizeRequest.citation) &&
+        Objects.equals(this.corpusPathname, memorizeRequest.corpusPathname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(namespacePathname, corpusPathname, corpusType);
+    return Objects.hash(document, citation, corpusPathname);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateCorpusRequest {\n");
-    sb.append("    namespacePathname: ").append(toIndentedString(namespacePathname)).append("\n");
+    sb.append("class MemorizeRequest {\n");
+    sb.append("    document: ").append(toIndentedString(document)).append("\n");
+    sb.append("    citation: ").append(toIndentedString(citation)).append("\n");
     sb.append("    corpusPathname: ").append(toIndentedString(corpusPathname)).append("\n");
-    sb.append("    corpusType: ").append(toIndentedString(corpusType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -180,48 +180,49 @@ public class CreateCorpusRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("namespace_pathname");
+    openapiFields.add("document");
+    openapiFields.add("citation");
     openapiFields.add("corpus_pathname");
-    openapiFields.add("corpus_type");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("namespace_pathname");
-    openapiRequiredFields.add("corpus_pathname");
-    openapiRequiredFields.add("corpus_type");
+    openapiRequiredFields.add("document");
+    openapiRequiredFields.add("citation");
   }
 
  /**
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateCorpusRequest
+  * @throws IOException if the JSON Object is invalid with respect to MemorizeRequest
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (!CreateCorpusRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateCorpusRequest is not found in the empty JSON string", CreateCorpusRequest.openapiRequiredFields.toString()));
+        if (!MemorizeRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in MemorizeRequest is not found in the empty JSON string", MemorizeRequest.openapiRequiredFields.toString()));
         }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
-        if (!CreateCorpusRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateCorpusRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        if (!MemorizeRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MemorizeRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateCorpusRequest.openapiRequiredFields) {
+      for (String requiredField : MemorizeRequest.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (!jsonObj.get("namespace_pathname").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `namespace_pathname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("namespace_pathname").toString()));
+      if (!jsonObj.get("document").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `document` to be a primitive type in the JSON string but got `%s`", jsonObj.get("document").toString()));
       }
-      if (!jsonObj.get("corpus_pathname").isJsonPrimitive()) {
+      // validate the required field `citation`
+      Citation.validateJsonObject(jsonObj.getAsJsonObject("citation"));
+      if ((jsonObj.get("corpus_pathname") != null && !jsonObj.get("corpus_pathname").isJsonNull()) && !jsonObj.get("corpus_pathname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `corpus_pathname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("corpus_pathname").toString()));
       }
   }
@@ -230,22 +231,22 @@ public class CreateCorpusRequest {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CreateCorpusRequest.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CreateCorpusRequest' and its subtypes
+       if (!MemorizeRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'MemorizeRequest' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CreateCorpusRequest> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CreateCorpusRequest.class));
+       final TypeAdapter<MemorizeRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(MemorizeRequest.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CreateCorpusRequest>() {
+       return (TypeAdapter<T>) new TypeAdapter<MemorizeRequest>() {
            @Override
-           public void write(JsonWriter out, CreateCorpusRequest value) throws IOException {
+           public void write(JsonWriter out, MemorizeRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public CreateCorpusRequest read(JsonReader in) throws IOException {
+           public MemorizeRequest read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -256,18 +257,18 @@ public class CreateCorpusRequest {
   }
 
  /**
-  * Create an instance of CreateCorpusRequest given an JSON string
+  * Create an instance of MemorizeRequest given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of CreateCorpusRequest
-  * @throws IOException if the JSON string is invalid with respect to CreateCorpusRequest
+  * @return An instance of MemorizeRequest
+  * @throws IOException if the JSON string is invalid with respect to MemorizeRequest
   */
-  public static CreateCorpusRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CreateCorpusRequest.class);
+  public static MemorizeRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, MemorizeRequest.class);
   }
 
  /**
-  * Convert an instance of CreateCorpusRequest to an JSON string
+  * Convert an instance of MemorizeRequest to an JSON string
   *
   * @return JSON string
   */

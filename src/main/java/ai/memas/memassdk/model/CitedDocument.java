@@ -15,6 +15,7 @@ package ai.memas.memassdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import ai.memas.memassdk.model.Citation;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -48,35 +49,60 @@ import java.util.Set;
 import ai.memas.memassdk.invoker.JSON;
 
 /**
- * CreateUserRequest
+ * CitedDocument
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-17T15:47:50.270747166-08:00[America/Los_Angeles]")
-public class CreateUserRequest {
-  public static final String SERIALIZED_NAME_NAMESPACE_PATHNAME = "namespace_pathname";
-  @SerializedName(SERIALIZED_NAME_NAMESPACE_PATHNAME)
-  private String namespacePathname;
+public class CitedDocument {
+  public static final String SERIALIZED_NAME_DOCUMENT = "document";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT)
+  private String document;
 
-  public CreateUserRequest() {
+  public static final String SERIALIZED_NAME_CITATION = "citation";
+  @SerializedName(SERIALIZED_NAME_CITATION)
+  private Citation citation;
+
+  public CitedDocument() {
   }
 
-  public CreateUserRequest namespacePathname(String namespacePathname) {
+  public CitedDocument document(String document) {
     
-    this.namespacePathname = namespacePathname;
+    this.document = document;
     return this;
   }
 
    /**
-   * Full namespace name, where child namespaces are appended after their parents&#39; names with &#39;.&#39;
-   * @return namespacePathname
+   * Get document
+   * @return document
   **/
   @javax.annotation.Nonnull
-  public String getNamespacePathname() {
-    return namespacePathname;
+  public String getDocument() {
+    return document;
   }
 
 
-  public void setNamespacePathname(String namespacePathname) {
-    this.namespacePathname = namespacePathname;
+  public void setDocument(String document) {
+    this.document = document;
+  }
+
+
+  public CitedDocument citation(Citation citation) {
+    
+    this.citation = citation;
+    return this;
+  }
+
+   /**
+   * Get citation
+   * @return citation
+  **/
+  @javax.annotation.Nonnull
+  public Citation getCitation() {
+    return citation;
+  }
+
+
+  public void setCitation(Citation citation) {
+    this.citation = citation;
   }
 
 
@@ -89,20 +115,22 @@ public class CreateUserRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateUserRequest createUserRequest = (CreateUserRequest) o;
-    return Objects.equals(this.namespacePathname, createUserRequest.namespacePathname);
+    CitedDocument citedDocument = (CitedDocument) o;
+    return Objects.equals(this.document, citedDocument.document) &&
+        Objects.equals(this.citation, citedDocument.citation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(namespacePathname);
+    return Objects.hash(document, citation);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateUserRequest {\n");
-    sb.append("    namespacePathname: ").append(toIndentedString(namespacePathname)).append("\n");
+    sb.append("class CitedDocument {\n");
+    sb.append("    document: ").append(toIndentedString(document)).append("\n");
+    sb.append("    citation: ").append(toIndentedString(citation)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -125,65 +153,69 @@ public class CreateUserRequest {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("namespace_pathname");
+    openapiFields.add("document");
+    openapiFields.add("citation");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("namespace_pathname");
+    openapiRequiredFields.add("document");
+    openapiRequiredFields.add("citation");
   }
 
  /**
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to CreateUserRequest
+  * @throws IOException if the JSON Object is invalid with respect to CitedDocument
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (!CreateUserRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateUserRequest is not found in the empty JSON string", CreateUserRequest.openapiRequiredFields.toString()));
+        if (!CitedDocument.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CitedDocument is not found in the empty JSON string", CitedDocument.openapiRequiredFields.toString()));
         }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
-        if (!CreateUserRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateUserRequest` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        if (!CitedDocument.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CitedDocument` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : CreateUserRequest.openapiRequiredFields) {
+      for (String requiredField : CitedDocument.openapiRequiredFields) {
         if (jsonObj.get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
         }
       }
-      if (!jsonObj.get("namespace_pathname").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `namespace_pathname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("namespace_pathname").toString()));
+      if (!jsonObj.get("document").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `document` to be a primitive type in the JSON string but got `%s`", jsonObj.get("document").toString()));
       }
+      // validate the required field `citation`
+      Citation.validateJsonObject(jsonObj.getAsJsonObject("citation"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CreateUserRequest.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CreateUserRequest' and its subtypes
+       if (!CitedDocument.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CitedDocument' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CreateUserRequest> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CreateUserRequest.class));
+       final TypeAdapter<CitedDocument> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CitedDocument.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CreateUserRequest>() {
+       return (TypeAdapter<T>) new TypeAdapter<CitedDocument>() {
            @Override
-           public void write(JsonWriter out, CreateUserRequest value) throws IOException {
+           public void write(JsonWriter out, CitedDocument value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public CreateUserRequest read(JsonReader in) throws IOException {
+           public CitedDocument read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -194,18 +226,18 @@ public class CreateUserRequest {
   }
 
  /**
-  * Create an instance of CreateUserRequest given an JSON string
+  * Create an instance of CitedDocument given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of CreateUserRequest
-  * @throws IOException if the JSON string is invalid with respect to CreateUserRequest
+  * @return An instance of CitedDocument
+  * @throws IOException if the JSON string is invalid with respect to CitedDocument
   */
-  public static CreateUserRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CreateUserRequest.class);
+  public static CitedDocument fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CitedDocument.class);
   }
 
  /**
-  * Convert an instance of CreateUserRequest to an JSON string
+  * Convert an instance of CitedDocument to an JSON string
   *
   * @return JSON string
   */

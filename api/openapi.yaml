@@ -2,13 +2,14 @@ openapi: 3.0.3
 info:
   contact:
     email: max.yu@memas.ai
-  description: "This is the Control Plane client for MeMaS (Memory Management Service).\
-    \ \nSee https://github.com/memas-ai/MeMaS for more details."
+  description: |-
+    This is the Control Plane and Data Plane APIs for MeMaS (Memory Management Service).
+    See https://github.com/memas-ai/MeMaS for more details.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  title: MeMaS CP APIs
-  version: 0.1.0
+  title: MeMaS APIs
+  version: 0.1.1
 externalDocs:
   description: Find out more about MeMaS
   url: http://memas.ai
@@ -17,8 +18,95 @@ servers:
 tags:
 - description: Control Plane APIs for Admins
   name: cp
+- description: Data Plane APIs for Chatbots
+  name: dp
 paths:
-  /cp/create_user:
+  /dp/memorize:
+    post:
+      description: Memorize information
+      operationId: memorize
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/memorize_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memorize_200_response'
+          description: Successful Operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memorize_400_response'
+          description: Failed operation
+      summary: Memorize information
+      tags:
+      - dp
+      x-content-type: application/json
+      x-accepts: application/json
+  /dp/recall:
+    get:
+      description: Recalls relevant information related to the given clue
+      operationId: recall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/recall_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CitedDocument'
+                type: array
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memorize_400_response'
+          description: Failed operation
+      summary: Recalls information
+      tags:
+      - dp
+      x-content-type: application/json
+      x-accepts: application/json
+  /cp/user:
+    delete:
+      description: Delete a namespace user
+      operationId: deleteUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createUser_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memorize_200_response'
+          description: Successful Operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceDoesNotExistError'
+          description: Failed operation
+      summary: Delete user
+      tags:
+      - cp
+      x-content-type: application/json
+      x-accepts: application/json
     post:
       description: Create a namespace user
       operationId: createUser
@@ -33,7 +121,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createUser_200_response'
+                $ref: '#/components/schemas/memorize_200_response'
           description: Successful Operation
         "400":
           content:
@@ -46,7 +134,34 @@ paths:
       - cp
       x-content-type: application/json
       x-accepts: application/json
-  /cp/create_corpus:
+  /cp/corpus:
+    delete:
+      description: Delete a corpus under a namespace
+      operationId: deleteCorpus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteCorpus_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memorize_200_response'
+          description: Successful Operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceDoesNotExistError'
+          description: Failed operation
+      summary: Delete corpus
+      tags:
+      - cp
+      x-content-type: application/json
+      x-accepts: application/json
     post:
       description: Create a corpus under a namespace
       operationId: createCorpus
@@ -61,7 +176,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createUser_200_response'
+                $ref: '#/components/schemas/memorize_200_response'
           description: Successful Operation
         "400":
           content:
@@ -80,9 +195,49 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/createUser_200_response'
+            $ref: '#/components/schemas/memorize_200_response'
       description: Successful Operation
   schemas:
+    Citation:
+      example:
+        document_name: MeMaS Readme
+        description: A Memory Management Service
+        source_uri: https://github.com/memas-ai/MeMaS
+        source_name: github
+      properties:
+        source_uri:
+          example: https://github.com/memas-ai/MeMaS
+          type: string
+        source_name:
+          example: github
+          type: string
+        document_name:
+          example: MeMaS Readme
+          type: string
+        description:
+          example: A Memory Management Service
+          type: string
+      type: object
+    CitedDocument:
+      example:
+        citation:
+          document_name: MeMaS Readme
+          description: A Memory Management Service
+          source_uri: https://github.com/memas-ai/MeMaS
+          source_name: github
+        document: "A world has two moons and three suns. And some people love dreaming\
+          \ \nduring daytime."
+      properties:
+        document:
+          example: "A world has two moons and three suns. And some people love dreaming\
+            \ \nduring daytime."
+          type: string
+        citation:
+          $ref: '#/components/schemas/Citation'
+      required:
+      - citation
+      - document
+      type: object
     CorpusType:
       description: Type of a Corpus
       enum:
@@ -152,6 +307,48 @@ components:
       - error_code
       - msg
       type: object
+    memorize_request_allOf:
+      properties:
+        corpus_pathname:
+          description: "Full name of a corpus, specifying which namespace the corpus\
+            \ is under. \nThe name takes on the format of \\\"<namespace_pathname>:<corpus_name>\\\
+            \""
+          example: memas:wikipedia
+          type: string
+    memorize_request:
+      allOf:
+      - $ref: '#/components/schemas/CitedDocument'
+      - type: object
+      - required:
+        - corpus_pathname
+      - $ref: '#/components/schemas/memorize_request_allOf'
+    memorize_200_response:
+      example:
+        success: true
+      properties:
+        success:
+          example: true
+          type: boolean
+      type: object
+    memorize_400_response:
+      oneOf:
+      - $ref: '#/components/schemas/NamespaceDoesNotExistError'
+      - $ref: '#/components/schemas/NamespaceIllegalNameError'
+    recall_request:
+      properties:
+        clue:
+          example: What's the weather?
+          type: string
+        corpus_pathname:
+          description: "Full name of a corpus, specifying which namespace the corpus\
+            \ is under. \nThe name takes on the format of \\\"<namespace_pathname>:<corpus_name>\\\
+            \""
+          example: memas:wikipedia
+          type: string
+      required:
+      - clue
+      - corpus_pathname
+      type: object
     createUser_request:
       properties:
         namespace_pathname:
@@ -163,28 +360,47 @@ components:
       required:
       - namespace_pathname
       type: object
-    createUser_200_response:
-      example:
-        success: true
-      properties:
-        success:
-          example: true
-          type: boolean
-      type: object
     createUser_400_response:
       oneOf:
       - $ref: '#/components/schemas/NamespaceExistError'
       - $ref: '#/components/schemas/NamespaceIllegalNameError'
     createCorpus_request:
       properties:
+        namespace_pathname:
+          description: |-
+            Full namespace name, where child namespaces are appended after their parents'
+            names with '.'
+          example: memas.chatbot.persona1
+          type: string
         corpus_pathname:
-          description: full corpus name
-          example: memas.wikipedia
+          description: "Full name of a corpus, specifying which namespace the corpus\
+            \ is under. \nThe name takes on the format of \\\"<namespace_pathname>:<corpus_name>\\\
+            \""
+          example: memas:wikipedia
           type: string
         corpus_type:
           $ref: '#/components/schemas/CorpusType'
       required:
       - corpus_pathname
       - corpus_type
+      - namespace_pathname
+      type: object
+    deleteCorpus_request:
+      properties:
+        namespace_pathname:
+          description: |-
+            Full namespace name, where child namespaces are appended after their parents'
+            names with '.'
+          example: memas.chatbot.persona1
+          type: string
+        corpus_pathname:
+          description: "Full name of a corpus, specifying which namespace the corpus\
+            \ is under. \nThe name takes on the format of \\\"<namespace_pathname>:<corpus_name>\\\
+            \""
+          example: memas:wikipedia
+          type: string
+      required:
+      - corpus_pathname
+      - namespace_pathname
       type: object
 
